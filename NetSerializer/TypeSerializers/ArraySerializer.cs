@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright 2015 Tomi Valkeinen
- * 
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -165,7 +165,7 @@ namespace NetSerializer
 			il.Emit(OpCodes.Ldloc_S, idxLocal);
 			il.Emit(OpCodes.Ldelema, elemType);
 
-			il.Emit(OpCodes.Call, data.ReaderMethodInfo);
+			il.Emit(OpCodes.Call, Helpers.GetCheckedReader(elemType, data)); // Imperial Space
 
 			// i = i + 1
 			il.Emit(OpCodes.Ldloc_S, idxLocal);

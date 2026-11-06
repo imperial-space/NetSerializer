@@ -1,6 +1,6 @@
 ﻿/*
  * Copyright 2015 Tomi Valkeinen
- * 
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -79,5 +79,14 @@ namespace NetSerializer
 			var del = serializer.GetDeserializeTrampolineFromId(id);
 			del(serializer, stream, out ob);
 		}
+
+		// Imperial Space Start
+		public static void DeserializeTyped<T>(Serializer serializer, Stream stream, out T value)
+		{
+			// Check before assigning it. This just ensures we get an InvalidCastException out instead of sending bad data.
+			Deserialize(serializer, stream, out var ob);
+			value = (T)ob;
+		}
+		// Imperial Space End
 	}
 }
